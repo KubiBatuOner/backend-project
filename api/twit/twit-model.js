@@ -11,7 +11,14 @@ const postlariGetir = async function () {
 const yorumlariGetir = async function (post_id) {
   const yorumlar = await db("comments as c")
     .leftJoin("posts as p", "c.post_id", "p.post_id")
-    .select("c.comment_id", "c.post_comment", "c.comment_date", "p.post_id")
+    .leftJoin("users as u", "c.user_id", "u.user_id")
+    .select(
+      "u.name",
+      "c.comment_id",
+      "c.post_comment",
+      "c.comment_date",
+      "p.post_id"
+    )
     .where("p.post_id", post_id);
   return yorumlar;
 };

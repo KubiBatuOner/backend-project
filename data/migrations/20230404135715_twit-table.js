@@ -35,23 +35,12 @@ exports.up = function (knex) {
         .inTable("posts")
         .onUpdate("CASCADE")
         .onDelete("CASCADE");
-    })
-    .createTable("users_comments", (tbl) => {
-      tbl.increments("users_comments_id");
       tbl
         .integer("user_id")
         .unsigned()
         .notNullable()
         .references("user_id")
         .inTable("users")
-        .onUpdate("CASCADE")
-        .onDelete("CASCADE");
-      tbl
-        .integer("comment_id")
-        .unsigned()
-        .notNullable()
-        .references("comment_id")
-        .inTable("comments")
         .onUpdate("CASCADE")
         .onDelete("CASCADE");
     });

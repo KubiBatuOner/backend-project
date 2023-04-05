@@ -31,11 +31,19 @@ exports.seed = async function (knex) {
     { post_content: "Bu hafta çok zor bir sınavım var", user_id: 3 },
   ]);
   await knex("comments").insert([
-    { post_comment: "Selam", post_id: 1 },
-    { post_comment: "Hoşgeldin", post_id: 1 },
-    { post_comment: "Afiyet olsun", post_id: 2 },
-    { post_comment: "Evet hadi bir şeyler yapalım", post_id: 3 },
-    { post_comment: "Ben de geliyorum", post_id: 3 },
-    { post_comment: "Yaparsın ben sana güveniyorum", post_id: 4 },
+    { post_comment: "Selam", post_id: 1, user_id: 2 },
+    { post_comment: "Hoşgeldin", post_id: 1, user_id: 3 },
+    { post_comment: "Afiyet olsun", post_id: 2, user_id: 2 },
+    {
+      post_comment: "Evet hadi bir şeyler yapalım",
+      post_id: 3,
+      user_id: 3,
+    },
+    { post_comment: "Ben de geliyorum", post_id: 3, user_id: 1 },
+    {
+      post_comment: "Yaparsın ben sana güveniyorum",
+      post_id: 4,
+      user_id: 2,
+    },
   ]);
 };
