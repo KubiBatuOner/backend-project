@@ -48,4 +48,49 @@ router.delete("/:post_id", mw.checkPostId, async (req, res, next) => {
   }
 });
 
+router.post(
+  "/comment",
+  mw.checkPayloadAndCommentIdExist,
+  async (req, res, next) => {
+    try {
+      let commentData = await TwitModel.insertComment(req.body);
+      res.json(commentData);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+router.put(
+  "/comment/:comment_id",
+  mw.checkCommentId,
+  mw.checkCommentContent,
+  async (req, res, next) => {
+    try {
+      const commentUpdate = await TwitModel.updateComment(
+        req.body,
+        req.params.comment_id
+      );
+      res.status(200).json(commentUpdate);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+router.delete(
+  "/comment/:comment_id",
+  mw.checkCommentId,
+  async (req, res, next) => {
+    try {
+      await TwitModel.deleteComment(req.params.comment_id);
+      res
+        .status(200)
+        .json({ message: `${req.params.comment_id} id'li comment silindi` });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
 module.exports = router;

@@ -28,6 +28,13 @@ const postId = async function (post_id) {
   return post;
 };
 
+const commentId = async function (comment_id) {
+  const comment = await db("comments as c")
+    .where("c.comment_id", comment_id)
+    .first();
+  return comment;
+};
+
 const idyeGorePostGetir = async function (user_id) {
   const postYorum = await db("users as u")
     .leftJoin("posts as p", "u.user_id", "p.user_id")
@@ -83,6 +90,23 @@ const deletePost = async function (post_id) {
   return db("posts").where("post_id", post_id).delete();
 };
 
+const insertComment = async function (comment) {
+  const [insertedCommentId] = await db("comments").insert(comment);
+  const newComment = await db("comments")
+    .where("comment_id", insertedCommentId)
+    .first();
+  return newComment;
+};
+
+const updateComment = async function (comment, comment_id) {
+  await db("comments").where("comment_id", comment_id).update(comment);
+  return commentId(comment_id);
+};
+
+const deleteComment = async function (comment_id) {
+  return db("comments").where("comment_id", comment_id).delete();
+};
+
 module.exports = {
   postlariGetir,
   yorumlariGetir,
@@ -91,4 +115,8 @@ module.exports = {
   insertPost,
   updatePost,
   deletePost,
+  insertComment,
+  updateComment,
+  deleteComment,
+  commentId,
 };
