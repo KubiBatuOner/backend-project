@@ -1,0 +1,500 @@
+{
+	"info": {
+		"_postman_id": "a637f8ee-018f-4518-bf97-2c19eaa3762d",
+		"name": "Twitter-clone",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18022517"
+	},
+	"item": [
+		{
+			"name": "api/auth control",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_ADDRESS}}:{{PORT}}/api/auth",
+					"host": [
+						"{{API_ADDRESS}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/auth/register",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const payload = JSON.parse(responseBody);\r",
+							"postman.setEnvironmentVariable(\"token\", payload.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"name\": \"Kerem Öner\",\r\n      \"email\": \"kerem@kerem.com\",\r\n      \"password\": \"2468\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_ADDRESS}}:{{PORT}}/api/auth/register",
+					"host": [
+						"{{API_ADDRESS}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/auth/login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const payload = JSON.parse(responseBody);\r",
+							"postman.setEnvironmentVariable(\"token\", payload.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"name\": \"Kerem Öner\",\r\n      \"email\": \"kerem@kerem.com\",\r\n      \"password\": \"2468\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_ADDRESS}}:{{PORT}}/api/auth/login",
+					"host": [
+						"{{API_ADDRESS}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/users",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{API_ADDRESS}}:{{PORT}}/api/users",
+					"host": [
+						"{{API_ADDRESS}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/users/:id",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{API_ADDRESS}}:{{PORT}}/api/users/4",
+					"host": [
+						"{{API_ADDRESS}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"users",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/users/:id",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Kerem Kaan Öner\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_ADDRESS}}:{{PORT}}/api/users/4",
+					"host": [
+						"{{API_ADDRESS}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"users",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/twit",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{API_ADDRESS}}:{{PORT}}/api/twit",
+					"host": [
+						"{{API_ADDRESS}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"twit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/twit/:id (user's twits)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{API_ADDRESS}}:{{PORT}}/api/twit/2",
+					"host": [
+						"{{API_ADDRESS}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"twit",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/twit",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"post_content\":\"badminton oynamaya gidiyorum\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_ADDRESS}}:{{PORT}}/api/twit",
+					"host": [
+						"{{API_ADDRESS}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"twit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/twit/:post_id",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"post_content\":\"sıkıldım\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_ADDRESS}}:{{PORT}}/api/twit/5",
+					"host": [
+						"{{API_ADDRESS}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"twit",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/twit/:post_id",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_ADDRESS}}:{{PORT}}/api/twit/5",
+					"host": [
+						"{{API_ADDRESS}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"twit",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/twit/comment",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"post_id\": 3,\r\n    \"post_comment\":\"süper\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_ADDRESS}}:{{PORT}}/api/twit/comment",
+					"host": [
+						"{{API_ADDRESS}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"twit",
+						"comment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/twit/comment/:comment_id",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"post_comment\":\"fenasın\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_ADDRESS}}:{{PORT}}/api/twit/comment/5",
+					"host": [
+						"{{API_ADDRESS}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"twit",
+						"comment",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/twit/comment/:comment_id",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_ADDRESS}}:{{PORT}}/api/twit/comment/5",
+					"host": [
+						"{{API_ADDRESS}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"twit",
+						"comment",
+						"5"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

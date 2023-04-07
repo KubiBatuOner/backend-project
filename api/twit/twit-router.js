@@ -13,7 +13,10 @@ router.get("/:id", mw.checkUserId, (req, res, next) => {
 
 router.post("/", mw.checkPayloadAndUserIdExist, async (req, res, next) => {
   try {
-    let insertedData = await TwitModel.insertPost(req.body);
+    let insertedData = await TwitModel.insertPost({
+      user_id: req.userInfo.user_id,
+      post_content: req.body.post_content,
+    });
     res.json(insertedData);
   } catch (error) {
     next(error);
@@ -53,7 +56,11 @@ router.post(
   mw.checkPayloadAndCommentIdExist,
   async (req, res, next) => {
     try {
-      let commentData = await TwitModel.insertComment(req.body);
+      let commentData = await TwitModel.insertComment({
+        user_id: req.userInfo.user_id,
+        post_id: req.body.post_id,
+        post_comment: req.body.post_comment,
+      });
       res.json(commentData);
     } catch (error) {
       next(error);

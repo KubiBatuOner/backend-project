@@ -36,6 +36,7 @@ router.post(
     try {
       const token = jwt.sign(
         {
+          user_id: req.user.user_id,
           name: req.user.name,
         },
         JWT_SECRET,

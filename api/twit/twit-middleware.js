@@ -15,7 +15,8 @@ const checkUserId = async function (req, res, next) {
 };
 
 const checkPayloadAndCommentIdExist = async (req, res, next) => {
-  let { user_id, post_id, post_comment } = req.body;
+  let { post_id, post_comment } = req.body;
+  let { user_id } = req.userInfo;
   if (
     user_id === undefined ||
     post_id == undefined ||
@@ -31,7 +32,8 @@ const checkPayloadAndCommentIdExist = async (req, res, next) => {
 };
 
 const checkPayloadAndUserIdExist = async (req, res, next) => {
-  let { user_id, post_content } = req.body;
+  let { post_content } = req.body;
+  let { user_id } = req.userInfo;
   if (user_id === undefined || post_content === undefined) {
     next({
       status: 400,
