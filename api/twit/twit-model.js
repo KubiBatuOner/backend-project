@@ -3,7 +3,13 @@ const db = require("../../data/db-config");
 const postlariGetir = async function () {
   const posts = await db("users as u")
     .leftJoin("posts as p", "u.user_id", "p.user_id")
-    .select("u.user_id", "u.name", "p.post_content", "p.posts_date")
+    .select(
+      "u.user_id",
+      "u.name",
+      "p.post_content",
+      "p.posts_date",
+      "p.post_id"
+    )
     .orderBy("p.posts_date", "DESC");
   return posts;
 };
